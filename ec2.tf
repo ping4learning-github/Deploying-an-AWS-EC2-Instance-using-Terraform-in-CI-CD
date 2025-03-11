@@ -5,7 +5,7 @@ resource "aws_instance" "my_ec2" {
   key_name      = "mytf-key"  # Use the manually created key
 
   # Use the existing security group
-  vpc_security_group_ids = ["sg-0b9804658eb3ae96b"]
+  vpc_security_group_ids = ["sg-02140435af7400fe2"]
 
   associate_public_ip_address = true  # Assign a public IP
 
