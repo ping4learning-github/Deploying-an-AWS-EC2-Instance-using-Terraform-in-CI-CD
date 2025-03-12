@@ -1,11 +1,14 @@
-/*resource "aws_instance" "my_ec2" {
+resource "aws_instance" "my_ec2" {
   ami           = "ami-05b10e08d247fb927"  # Provided AMI ID
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public_subnet.id
   key_name      = "mytf-key"  # Use the manually created key
-
+/*
   # Use the existing security group
   vpc_security_group_ids = ["sg-0b9804658eb3ae96b"]
+*/
+ # Use the default security group
+  vpc_security_group_ids = [data.aws_security_group.default.id]
 
   associate_public_ip_address = true  # Assign a public IP
 
@@ -31,4 +34,3 @@
     Name = "MyPublicEC2"
   }
 }
-*/
