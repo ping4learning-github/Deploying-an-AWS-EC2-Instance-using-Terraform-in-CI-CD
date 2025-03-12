@@ -48,4 +48,4 @@ resource "aws_security_group_rule" "allow_all_inbound" {
   protocol         = "-1"  # Allow all protocols
   cidr_blocks      = ["0.0.0.0/0"]
 }
-*/
+
