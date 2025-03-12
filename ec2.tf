@@ -5,7 +5,7 @@ resource "aws_instance" "my_ec2" {
   key_name      = "mytf-key"  # Use the manually created key
 
   # Use the existing security group
-  vpc_security_group_ids = ["sg-0747b88390a1fb469"]
+  vpc_security_group_ids = ["sg-054cd64a2f0d9d992"]
 /*
  # Use the default security group
   vpc_security_group_ids = [data.aws_security_group.default.id]
