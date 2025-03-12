@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "allow_https" {
   protocol         = "tcp"
   cidr_blocks      = ["0.0.0.0/0"]
 }
-
+/*
 #Terraform Code to Add Inbound & Outbound Rules
 # Outbound rule: Allow all traffic (default in AWS)
 resource "aws_security_group_rule" "allow_all_outbound" {
@@ -48,4 +48,5 @@ resource "aws_security_group_rule" "allow_all_inbound" {
   protocol         = "-1"  # Allow all protocols
   cidr_blocks      = ["0.0.0.0/0"]
 }
+*/
 
