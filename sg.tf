@@ -1,4 +1,4 @@
-# Inbound rule: Allow SSH (22) from anywhere
+/*# Inbound rule: Allow SSH (22) from anywhere
 resource "aws_security_group_rule" "allow_ssh" {
   security_group_id = "sg-0b9804658eb3ae96b"
   type              = "ingress"
