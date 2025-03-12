@@ -1,4 +1,4 @@
-resource "aws_instance" "myy_ec2" {
+resource "aws_instance" "myapp_ec2" {
   ami           = "ami-05b10e08d247fb927"
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public_subnet.id
