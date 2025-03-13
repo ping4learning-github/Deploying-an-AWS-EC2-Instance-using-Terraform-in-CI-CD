@@ -1,22 +1,27 @@
-resource "aws_instance" "myapp_ec2" {
-  ami           = "ami-05b10e08d247fb927"
+resource "aws_instance" "my_ec2" {
+  ami           = "ami-05b10e08d247fb927"  # Provided AMI ID
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public_subnet.id
-  key_name      = "mytf-key"
+  key_name      = "mytf-key"  # Use the manually created key
+/*
+  # Use the existing security group
   vpc_security_group_ids = ["sg-054cd64a2f0d9d992"]
+*/
+  # Use the default security group
+  vpc_security_group_ids = [data.aws_security_group.default.id]
 
-  associate_public_ip_address = true
+  associate_public_ip_address = true  # Assign a public IP
 
   root_block_device {
-    volume_size           = 20
+    volume_size           = 10
     volume_type           = "gp3"
     encrypted             = true
     delete_on_termination = true
   }
 
-  # User Data to Install Apache and Download Files from S3
+  # User Data to Install Apache and Display Server Details
   user_data = <<-EOF
-      #!/bin/bash
+    #!/bin/bash
     yes | sudo yum update -y
     yes | sudo yum install httpd -y
     echo "<h1>Server Details</h1><p><strong>Hostname:</strong> $(hostname)</p> \
@@ -29,3 +34,5 @@ resource "aws_instance" "myapp_ec2" {
     Name = "MyPublicEC2"
   }
 }
+
+
