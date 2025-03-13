@@ -8,7 +8,7 @@ resource "aws_instance" "myapp_ec2" {
   associate_public_ip_address = true
 
   root_block_device {
-    volume_size           = 20
+    volume_size           = 10
     volume_type           = "gp3"
     encrypted             = true
     delete_on_termination = true
@@ -16,22 +16,16 @@ resource "aws_instance" "myapp_ec2" {
 
   # User Data to Install Apache and Download Files from S3
   user_data = <<-EOF
-    #!/bin/bash
+      #!/bin/bash
     yes | sudo yum update -y
     yes | sudo yum install httpd -y
-
-    sudo systemctl start httpd
-    sudo systemctl enable httpd
-
-    # Download files from S3
-    aws s3 cp s3://harshh123/index.html /var/www/html/index.html
-    aws s3 cp s3://harshh123/style.css /var/www/html/style.css
-    
-
+    echo "<h1>Server Details</h1><p><strong>Hostname:</strong> $(hostname)</p> \
+    <p><strong>IP Address:</strong> $(hostname -I | awk '{print $1}')</p>" | sudo tee /var/www/html/index.html > /dev/null
     sudo systemctl restart httpd
+    sudo systemctl enable httpd  # Ensure Apache starts on reboot
   EOF
 
   tags = {
-    Name = "Myapplication"
+    Name = "MyPublicEC2"
   }
 }
