@@ -8,7 +8,7 @@ resource "aws_instance" "myapp_ec2" {
   associate_public_ip_address = true
 
   root_block_device {
-    volume_size           = 10
+    volume_size           = 20
     volume_type           = "gp3"
     encrypted             = true
     delete_on_termination = true
